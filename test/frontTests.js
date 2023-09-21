@@ -43,12 +43,12 @@ describe('Testes no frontend:',() => {
         const respostaVerificacao = verificaPredio(sala);
         expect(respostaVerificacao).to.equal(3);
     })
-    it('Teste numero do predio 3: ',() => {
+    it('Teste numero do predio 4: ',() => {
         const sala = 20; 
         const respostaVerificacao = verificaPredio(sala);
         expect(respostaVerificacao).to.equal(4);
     })
-    it('Teste numero do predio 4: ',() => {
+    it('Teste numero do predio 5: ',() => {
         const sala = 25; 
         const respostaVerificacao = verificaPredio(sala);
         expect(respostaVerificacao).to.equal(5);
