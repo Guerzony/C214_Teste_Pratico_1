@@ -1,12 +1,12 @@
-import mongoose, {Schema} from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
-const infoProf = new Schema({
+const infoSchema = new Schema({
     
     nomeDoProfessor:{
          type: String,
          required: true
     },
-    horadioDeAtendimento: {
+    horarioDeAtendimento: {
         type: String, 
         required: true
     },
@@ -21,8 +21,8 @@ const infoProf = new Schema({
     predio:{
         type: Array,
         required: true
-    }    
-})
+    },    
+},{versionKey: false})
 
 
-export default mongoose.model('informationProfessor', infoProf);
+export default mongoose.model('infoProf', infoSchema);

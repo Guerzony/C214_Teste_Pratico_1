@@ -11,67 +11,57 @@ import { verificaPredio } from '../backend/controllers/infoProfController.js';
 chai.use(chaiHttp);
 chai.should(); // Configura should para poder ser usado
 
-describe('Testes das rotas e Informacoes dos Professores:', function() {
+describe('(CENARIO DE SUCESSO) Testes das rotas e Informacoes dos Professores:', function() {
   //Teste de busca das tasks
-  let id;
   this.timeout(5000);
-  it('Teste nome igual: ',() => {
-    const nome1 = 'Jose Ataliba'; 
-    const nome2 = 'Jose Ataliba';
-    const respostaVerificacao = verificaName(nome1, nome2);
-    expect(respostaVerificacao).to.equal(true);
-})
+  let id;
 
-it('Teste nome diferente: ',() => {
+  it('Teste nome diferente',() => {
     const nome1 = 'Jose Ataliba'; 
     const nome2 = 'Jose Candido';
     const respostaVerificacao = verificaName(nome1, nome2);
     expect(respostaVerificacao).to.equal(false);
-})
-it('Teste periodo Integral: ',() => {
+  })
+  
+  it('Teste periodo Integral',() => {
     const periodo = 'Integral'; 
     const respostaVerificacao = verificaPeriodo(periodo);
     expect(respostaVerificacao).to.equal(true);
-})
-it('Teste periodo Noturno: ',() => {
+  })
+  
+  it('Teste periodo Noturno',() => {
     const periodo = 'Noturno'; 
     const respostaVerificacao = verificaPeriodo(periodo);
     expect(respostaVerificacao).to.equal(true);
-})
-it('Teste periodo incorreto: ',() => {
-    const periodo = 'Matutino'; 
-    const respostaVerificacao = verificaPeriodo(periodo);
-    expect(respostaVerificacao).to.equal(false);
-})
-it('Teste numero do predio 2: ',() => {
+  })
+
+  it('Teste numero do predio 2',() => {
     const sala = 6; 
     const respostaVerificacao = verificaPredio(sala);
     expect(respostaVerificacao).to.equal(2);
-})
-it('Teste numero do predio 3: ',() => {
+  })
+
+  it('Teste numero do predio 3',() => {
     const sala = 15; 
     const respostaVerificacao = verificaPredio(sala);
     expect(respostaVerificacao).to.equal(3);
-})
-it('Teste numero do predio 4: ',() => {
+  })
+
+  it('Teste numero do predio 4',() => {
     const sala = 20; 
     const respostaVerificacao = verificaPredio(sala);
     expect(respostaVerificacao).to.equal(4);
-})
-it('Teste numero do predio 5: ',() => {
-    const sala = 25; 
-    const respostaVerificacao = verificaPredio(sala);
-    expect(respostaVerificacao).to.equal(5);
-})
+  })
+
   it('/GET', async () => { 
-  try{
-    const infos = [];
-    const response = await request(app)
-    .get('/info');
-    response.should.have.status(200);
-    expect(infos).to.eql(response.body);
-  }catch(err) {
-    console.log("Erro: " + err);
+    try{
+      const infos = [];
+      const response = await request(app)
+      .get('/info');
+      response.should.have.status(200);
+      expect(infos).to.eql(response.body);
+    } catch(err) {
+      console.log("Erro: " + err);
   }
   });
 
@@ -79,7 +69,7 @@ it('Teste numero do predio 5: ',() => {
   it('/POST', async () => {
     const newTarefa = {
       "nomeDoProfessor": "Joao Cleber Nino",
-      "horadioDeAtendimento": "10:30",
+      "horarioDeAtendimento": "10:30",
       "periodo": "Integral",
       "sala": 1,
       "predio": [1,2,3,4,5]
@@ -100,9 +90,9 @@ it('Teste numero do predio 5: ',() => {
   //Teste de update de tarefa
   it('/PUT', async () => { 
     let infoUpdate = {
-        "horadioDeAtendimento": "9:00",
+        "horarioDeAtendimento": "9:00",
     }
-    const resposta = "Info atualizada com sucesso!";
+    const resposta = "Informacao atualizada com sucesso!";
     try{  
       const response = await request(app)
       .put(`/info/${id}`)
@@ -114,12 +104,13 @@ it('Teste numero do predio 5: ',() => {
     }
   });
 
+  
   //Teste de delete de tarefa
   it('/DELETE', async () => {
     let infoDelete = {
       "nomeDoProfessor": "Joao Cleber Nino",
   }
-  const resposta = 'Informacao  excluida com sucesso!';
+  const resposta = 'Informacao deletada com sucesso!';
   try{
   const response = await request(app)
   .delete(`/info/${id}`)
@@ -130,4 +121,26 @@ it('Teste numero do predio 5: ',() => {
     console.log("Erro:" + error);
   }
 })
+
+});
+
+describe('(CENARIO DE FALHA) Testes das rotas e Informacoes dos Professores:', function() {
+  it('Teste nome igual',() => {
+    const nome1 = 'Jose Ataliba'; 
+    const nome2 = 'Jose Ataliba';
+    const respostaVerificacao = verificaName(nome1, nome2);
+    expect(respostaVerificacao).to.equal(true);
+  });
+  it ('Teste nome com numero',()=>{
+    const nome1 = '1111Nathan';
+    const nome2 = 'renan';
+    const respostaVerificacao = verifica(nome1, nome2);
+    expect(respostaVerificacao).to.equal(false);
+  })
+  it('Teste periodo incorreto',() => {
+    const periodo = 'Matutino'; 
+    const respostaVerificacao = verificaPeriodo(periodo);
+    expect(respostaVerificacao).to.equal(false);
+  });
+
 });

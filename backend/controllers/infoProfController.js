@@ -1,39 +1,44 @@
-import infoProf from "../models/infoProf.js";
+import InfoProf from "../models/infoProf.js";
 
 async function getInfoProf( req, res ){
-    const infoProfs =  await infoProf.find();
+    const infoProfs =  await InfoProf.find();
     return res.status(200).send(infoProfs);
 }
 
 async function createInfoProf( req, res ){
     const newinfoProf = req.body;
-    await infoProf.create(newinfoProf);
-    return res.status(201).send('Info criada com sucesso!');
+    const info = await InfoProf.create(newinfoProf);
+    return res.status(201).send(info);
 }
+
 async function updateInfoProf( req, res ){
     const id = req.params.id;
     const horarioDeAtendimento = req.body.horarioDeAtendimento;
-    await infoProf.findByIdAndUpdate({ "_id": id, "horarioDeAtendimento": horarioDeAtendimento })
-    return res.status(200).send('Informacoes atualizadas com sucesso!');
+    await InfoProf.findByIdAndUpdate({ "_id": id, "horarioDeAtendimento": horarioDeAtendimento })
+    return res.status(200).send('Informacao atualizada com sucesso!');
 }
+
 async function deleteInfoProf( req, res ){
     const id = req.params.id;
-    await infoProf.findByIdAndDelete(id);
-    return res.status(200).send('Informacoes deletadas com sucesso!');
+    await InfoProf.findByIdAndDelete(id);
+    return res.status(200).send('Informacao deletada com sucesso!');
 }
 
 function verificaName( createdName, SearchedName ){
+    const regex = [];
     if(createdName == SearchedName)
         return true;
     else
         return false;
 }
+
 function verificaPeriodo(periodo){
     if(periodo == 'Noturno' || periodo == 'Integral'){
         return true;
     }else
         return false;
 }
+
 function verificaPredio(sala){
     if(sala == 1 || sala == 2 || sala == 3 || sala == 4 || sala == 5){
         return 1;
@@ -55,4 +60,4 @@ function verificaPredio(sala){
     }
 }   
 
-export { getInfoProf,createInfoProf,updateInfoProf,deleteInfoProf, verificaName, verificaPeriodo, verificaPredio };
+export { getInfoProf, createInfoProf, updateInfoProf, deleteInfoProf, verificaName, verificaPeriodo, verificaPredio };
