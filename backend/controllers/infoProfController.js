@@ -25,11 +25,18 @@ async function deleteInfoProf( req, res ){
 }
 
 function verificaName( createdName, SearchedName ){
-    const regex = [];
-    if(createdName == SearchedName)
+    const regex = /^[a-zA-Z\s]+$/;
+    const isValid = regex.test(createdName);
+    if(isValid){
+    if(createdName == SearchedName){     
         return true;
-    else
+    }
+    else{
         return false;
+    }
+    }else{
+        return false;
+    }
 }
 
 function verificaPeriodo(periodo){

@@ -131,16 +131,30 @@ describe('(CENARIO DE FALHA) Testes das rotas e Informacoes dos Professores:', f
     const respostaVerificacao = verificaName(nome1, nome2);
     expect(respostaVerificacao).to.equal(true);
   });
+
   it ('Teste nome com numero',()=>{
     const nome1 = '1111Nathan';
     const nome2 = 'renan';
-    const respostaVerificacao = verifica(nome1, nome2);
+    const respostaVerificacao = verificaName(nome1, nome2);
     expect(respostaVerificacao).to.equal(false);
-  })
+  });
+
   it('Teste periodo incorreto',() => {
     const periodo = 'Matutino'; 
     const respostaVerificacao = verificaPeriodo(periodo);
     expect(respostaVerificacao).to.equal(false);
+  });
+
+  it('Teste numero do predio fora do determinado',() => {
+    const sala = 40; 
+    const respostaVerificacao = verificaPredio(sala);
+    expect(respostaVerificacao).to.equal(6);
+  });
+
+  it('Teste numero do predio com string',() => {
+    const sala = 'Nathan'; 
+    const respostaVerificacao = verificaPredio(sala);
+    expect(respostaVerificacao).to.equal(6);
   });
 
 });
