@@ -56,7 +56,7 @@ function verificaName( createdName, SearchedName ){
 }
 // Horario de funcionamento das 7h até as 19h
 function verificaHorario(hora, minutos){
-    if((hora >= 7 && hora <= 18) && minutos < 60){
+    if((hora >= 7 && hora <= 18) && (minutos < 60 && minutos > 0)){
         return true;
     }else{
         return false;
