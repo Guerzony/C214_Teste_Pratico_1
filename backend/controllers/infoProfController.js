@@ -1,27 +1,43 @@
 import InfoProf from "../models/infoProf.js";
 
 async function getInfoProf( req, res ){
-    const infoProfs =  await InfoProf.find();
-    return res.status(200).send(infoProfs);
+    try{
+        const infoProfs =  await InfoProf.find();
+        return res.status(200).send(infoProfs);
+    }catch(error){
+        return res.status(404).send('Não foi possivel buscar informacao!');
+    }
 }
 
 async function createInfoProf( req, res ){
-    const newinfoProf = req.body;
-    const info = await InfoProf.create(newinfoProf);
-    return res.status(201).send(info);
+    try{
+        const newinfoProf = req.body;
+        const info = await InfoProf.create(newinfoProf);
+        return res.status(201).send(info);
+    }catch(error){
+        return res.status(404).send('Não foi possivel criar informacao!');
+    }
 }
 
 async function updateInfoProf( req, res ){
-    const id = req.params.id;
-    const horarioDeAtendimento = req.body.horarioDeAtendimento;
-    await InfoProf.findByIdAndUpdate({ "_id": id, "horarioDeAtendimento": horarioDeAtendimento })
-    return res.status(200).send('Informacao atualizada com sucesso!');
+    try{
+        const id = req.params.id;
+        const horarioDeAtendimento = req.body.horarioDeAtendimento;
+        await InfoProf.findByIdAndUpdate({ "_id": id, "horarioDeAtendimento": horarioDeAtendimento })
+        return res.status(200).send('Informacao atualizada com sucesso!');
+    }catch(error){
+        return res.status(404).send('Informacao nao atualizada com sucesso!');
+    }
 }
 
 async function deleteInfoProf( req, res ){
-    const id = req.params.id;
-    await InfoProf.findByIdAndDelete(id);
-    return res.status(200).send('Informacao deletada com sucesso!');
+    try{
+        const id = req.params.id;
+        await InfoProf.findByIdAndDelete(id);
+        return res.status(200).send('Informacao deletada com sucesso!');
+    }catch(error){
+        return res.status(404).send('Informacao não encontrada!');
+    }
 }
 
 function verificaName( createdName, SearchedName ){

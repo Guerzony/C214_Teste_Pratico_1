@@ -120,7 +120,7 @@ describe('(CENARIO DE SUCESSO) Testes das rotas e Informacoes dos Professores:',
   }catch(error){
     console.log("Erro:" + error);
   }
-})
+});
 
 });
 
@@ -157,4 +157,72 @@ describe('(CENARIO DE FALHA) Testes das rotas e Informacoes dos Professores:', f
     expect(respostaVerificacao).to.equal(6);
   });
 
+  it('/GET', async () => { 
+    try{
+      const infos = [];
+      const response = await request(app)
+      .get('/info');
+      response.should.have.status(200);
+      expect(infos).to.eql(response.body);
+    } catch(err) {
+      console.log("Erro: " + err);
+  }
+  });
+
+  //Teste de criação de tarefa
+  it('/POST (ERRADO)', async () => {
+    const newTarefa = {
+      "nomeDoProfessor": "Joao Cleber Nino",
+      "horarioDeAtendimento": "10:30",
+      "periodo": "Integral",
+      "sala": 1,
+    };
+    const resposta = 'Não foi possivel criar informacao!'
+    try{
+    const response = await request(app)
+    .post('/info')
+    .send(newTarefa)
+    response.should.have.status(404);
+    expect(resposta).to.eql(response.text);
+    }catch(err) {
+    console.log("Erro: " + err);
+    }
+  });
+
+  //Teste de update de tarefa
+  it('/PUT (ERRADO)', async () => { 
+    let id = '142341234123521';
+    let infoUpdate = {
+        "horarioDeAtendimento": "9:00",
+    }
+    const resposta = "Informacao nao atualizada com sucesso!";
+    try{  
+      const response = await request(app)
+      .put(`/info/${id}`)
+      .send(infoUpdate)
+      response.should.have.status(404);
+      expect(resposta).to.eql(response.text);
+    }catch(error){
+      console.log("Erro:" + error);
+    }
+  });
+
+  
+  //Teste de delete de tarefa
+  it('/DELETE (ERRADO)', async () => {
+    let id = '142341234123521';
+    let infoDelete = {
+      "nomeDoProfessor": "Nome errado",
+  }
+  const resposta = 'Informacao não encontrada!';
+  try{
+  const response = await request(app)
+  .delete(`/info/${id}`)
+  .send(infoDelete)  
+  response.should.have.status(404);
+  expect(resposta).to.eql(response.text);
+  }catch(error){
+    console.log("Erro:" + error);
+  }
+});
 });
