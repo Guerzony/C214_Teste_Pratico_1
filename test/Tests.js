@@ -96,6 +96,19 @@ describe('(CENARIO DE FALHA) Testes das rotas e Informacoes dos Professores:', f
     const respostaVerificacao = verificaName(nome1, nome2);
     expect(respostaVerificacao).to.equal(false);
   });
+ 
+  it ('Teste nome sendo numero',()=>{
+    const nome1 = 1111;
+    const nome2 = 'renan';
+    const respostaVerificacao = verificaName(nome1, nome2);
+    expect(respostaVerificacao).to.equal(false);
+  });
+
+  it('Teste periodo com numero',() => {
+    const periodo = 2222; 
+    const respostaVerificacao = verificaPeriodo(periodo);
+    expect(respostaVerificacao).to.equal(false);
+  });
 
   it('Teste periodo incorreto',() => {
     const periodo = 'Matutino'; 
