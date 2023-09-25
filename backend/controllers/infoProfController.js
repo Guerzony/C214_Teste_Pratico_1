@@ -54,6 +54,15 @@ function verificaName( createdName, SearchedName ){
         return false;
     }
 }
+// Horario de funcionamento das 7h até as 19h
+function verificaHorario(hora, minutos){
+    if((hora >= 7 && hora <= 18) && minutos < 60){
+        return true;
+    }else{
+        return false;
+    }
+
+}
 
 function verificaPeriodo(periodo){
     if(periodo == 'Noturno' || periodo == 'Integral'){
@@ -83,4 +92,4 @@ function verificaPredio(sala){
     }
 }   
 
-export { getInfoProf, createInfoProf, updateInfoProf, deleteInfoProf, verificaName, verificaPeriodo, verificaPredio };
+export { getInfoProf, createInfoProf, updateInfoProf, deleteInfoProf, verificaName, verificaPeriodo, verificaPredio,verificaHorario };

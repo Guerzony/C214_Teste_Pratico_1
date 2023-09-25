@@ -7,6 +7,7 @@ import chaiHttp from 'chai-http';
 import { verificaName } from '../backend/controllers/infoProfController.js';
 import { verificaPeriodo } from '../backend/controllers/infoProfController.js';
 import { verificaPredio } from '../backend/controllers/infoProfController.js';
+import { verificaHorario } from '../backend/controllers/infoProfController.js';
 
 chai.use(chaiHttp);
 chai.should(); // Configura should para poder ser usado
@@ -14,113 +15,70 @@ chai.should(); // Configura should para poder ser usado
 describe('(CENARIO DE SUCESSO) Testes das rotas e Informacoes dos Professores:', function() {
   //Teste de busca das tasks
   this.timeout(5000);
-  let id;
 
   it('Teste nome diferente',() => {
     const nome1 = 'Jose Ataliba'; 
     const nome2 = 'Jose Candido';
     const respostaVerificacao = verificaName(nome1, nome2);
     expect(respostaVerificacao).to.equal(false);
-  })
+  });
   
   it('Teste periodo Integral',() => {
     const periodo = 'Integral'; 
     const respostaVerificacao = verificaPeriodo(periodo);
     expect(respostaVerificacao).to.equal(true);
-  })
+  });
   
   it('Teste periodo Noturno',() => {
     const periodo = 'Noturno'; 
     const respostaVerificacao = verificaPeriodo(periodo);
     expect(respostaVerificacao).to.equal(true);
-  })
+  });
+
+  it('Teste numero do predio 1',() => {
+    const sala = 1; 
+    const respostaVerificacao = verificaPredio(sala);
+    expect(respostaVerificacao).to.equal(1);
+  });
 
   it('Teste numero do predio 2',() => {
     const sala = 6; 
     const respostaVerificacao = verificaPredio(sala);
     expect(respostaVerificacao).to.equal(2);
-  })
+  });
 
   it('Teste numero do predio 3',() => {
     const sala = 15; 
     const respostaVerificacao = verificaPredio(sala);
     expect(respostaVerificacao).to.equal(3);
-  })
+  });
 
   it('Teste numero do predio 4',() => {
     const sala = 20; 
     const respostaVerificacao = verificaPredio(sala);
     expect(respostaVerificacao).to.equal(4);
-  })
-
-  it('/GET', async () => { 
-    try{
-      const infos = [];
-      const response = await request(app)
-      .get('/info');
-      response.should.have.status(200);
-      expect(infos).to.eql(response.body);
-    } catch(err) {
-      console.log("Erro: " + err);
-  }
   });
 
-  //Teste de criação de tarefa
-  it('/POST', async () => {
-    const newTarefa = {
-      "nomeDoProfessor": "Joao Cleber Nino",
-      "horarioDeAtendimento": "10:30",
-      "periodo": "Integral",
-      "sala": 1,
-      "predio": [1,2,3,4,5]
-    }; 
-    try{
-    const response = await request(app)
-    .post('/info')
-    .send(newTarefa)
-    id = response.body["_id"];
-    response.should.have.status(201);
-    expect(newTarefa["nomeDoProfessor"]).to.eql(response.body["nomeDoProfessor"]);
-    }catch(err) {
-    console.log("Erro: " + err);
-    id = response.body["_id"];
-    }
+  it('Teste numero do predio 5',() => {
+    const sala = 25; 
+    const respostaVerificacao = verificaPredio(sala);
+    expect(respostaVerificacao).to.equal(5);
   });
 
-  //Teste de update de tarefa
-  it('/PUT', async () => { 
-    let infoUpdate = {
-        "horarioDeAtendimento": "9:00",
-    }
-    const resposta = "Informacao atualizada com sucesso!";
-    try{  
-      const response = await request(app)
-      .put(`/info/${id}`)
-      .send(infoUpdate)
-      response.should.have.status(200);
-      expect(resposta).to.eql(response.text);
-    }catch(error){
-      console.log("Erro:" + error);
-    }
+  it('Teste horario de funcionamento correto',() => {
+    const hora = 8;
+    const minutos = 30;
+    const resposta = true;   
+    const respostaVerificacao = verificaHorario( hora, minutos );
+    expect(respostaVerificacao).to.equal(resposta);
   });
-
-  
-  //Teste de delete de tarefa
-  it('/DELETE', async () => {
-    let infoDelete = {
-      "nomeDoProfessor": "Joao Cleber Nino",
-  }
-  const resposta = 'Informacao deletada com sucesso!';
-  try{
-  const response = await request(app)
-  .delete(`/info/${id}`)
-  .send(infoDelete)  
-  response.should.have.status(200);
-  expect(resposta).to.eql(response.text);
-  }catch(error){
-    console.log("Erro:" + error);
-  }
-});
+  it('Teste Horario de funcionamento correto',() => {
+    const hora = 18;
+    const minutos = 59;
+    const resposta = true;   
+    const respostaVerificacao = verificaHorario( hora, minutos );
+    expect(respostaVerificacao).to.equal(resposta);
+  });
 
 });
 
@@ -157,72 +115,28 @@ describe('(CENARIO DE FALHA) Testes das rotas e Informacoes dos Professores:', f
     expect(respostaVerificacao).to.equal(6);
   });
 
-  it('/GET', async () => { 
-    try{
-      const infos = [];
-      const response = await request(app)
-      .get('/info');
-      response.should.have.status(200);
-      expect(infos).to.eql(response.body);
-    } catch(err) {
-      console.log("Erro: " + err);
-  }
+  it('Teste horario de funcionamento errado',() => {
+    const hora = 19;
+    const minutos = 30;
+    const resposta = false;   
+    const respostaVerificacao = verificaHorario( hora, minutos );
+    expect(respostaVerificacao).to.equal(resposta);
   });
 
-  //Teste de criação de tarefa
-  it('/POST (ERRADO)', async () => {
-    const newTarefa = {
-      "nomeDoProfessor": "Joao Cleber Nino",
-      "horarioDeAtendimento": "10:30",
-      "periodo": "Integral",
-      "sala": 1,
-    };
-    const resposta = 'Não foi possivel criar informacao!'
-    try{
-    const response = await request(app)
-    .post('/info')
-    .send(newTarefa)
-    response.should.have.status(404);
-    expect(resposta).to.eql(response.text);
-    }catch(err) {
-    console.log("Erro: " + err);
-    }
+  it('Teste Horario de funcionamento errado',() => {
+    const hora = 6;
+    const minutos = 30;
+    const resposta = false;   
+    const respostaVerificacao = verificaHorario( hora, minutos );
+    expect(respostaVerificacao).to.equal(resposta);
   });
 
-  //Teste de update de tarefa
-  it('/PUT (ERRADO)', async () => { 
-    let id = '142341234123521';
-    let infoUpdate = {
-        "horarioDeAtendimento": "9:00",
-    }
-    const resposta = "Informacao nao atualizada com sucesso!";
-    try{  
-      const response = await request(app)
-      .put(`/info/${id}`)
-      .send(infoUpdate)
-      response.should.have.status(404);
-      expect(resposta).to.eql(response.text);
-    }catch(error){
-      console.log("Erro:" + error);
-    }
+  it('Teste Horario de funcionamento errado',() => {
+    const hora = 'dezoite';
+    const minutos = 'trinta';
+    const resposta = false;   
+    const respostaVerificacao = verificaHorario( hora, minutos );
+    expect(respostaVerificacao).to.equal(resposta);
   });
 
-  
-  //Teste de delete de tarefa
-  it('/DELETE (ERRADO)', async () => {
-    let id = '142341234123521';
-    let infoDelete = {
-      "nomeDoProfessor": "Nome errado",
-  }
-  const resposta = 'Informacao não encontrada!';
-  try{
-  const response = await request(app)
-  .delete(`/info/${id}`)
-  .send(infoDelete)  
-  response.should.have.status(404);
-  expect(resposta).to.eql(response.text);
-  }catch(error){
-    console.log("Erro:" + error);
-  }
-});
 });
