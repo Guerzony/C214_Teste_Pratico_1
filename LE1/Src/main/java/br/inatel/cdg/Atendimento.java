@@ -55,7 +55,7 @@ public class Atendimento {
             return predio;
         }
         else{
-            predio = 7;
+            predio = 0;
             return predio;
         }
     }

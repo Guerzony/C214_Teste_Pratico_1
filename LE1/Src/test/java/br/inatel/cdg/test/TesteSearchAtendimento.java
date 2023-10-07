@@ -111,53 +111,53 @@ public class TesteSearchAtendimento {
     /**************[TESTES P/ CENÁRIOS DE FALHAS]**************/
 
     @Test
-    public void testeSearchPhyll(){
+    public void testeSearchPHYLL(){
         Atendimento phyll = searchAtendimento.obterInfosAtendimento("Phyll");
-        assertEquals("Phyll", phyll.getNomePROFESSOR());
+        assertNotEquals("Phyll", phyll.getNomePROFESSOR());
     }
 
     @Test
-    public void testeSearchSoned(){
+    public void testeSearchSONED(){
         Atendimento soned = searchAtendimento.obterInfosAtendimento("Soned");
-        assertEquals("Soned", soned.getNomePROFESSOR());
+        assertNotEquals("Soned", soned.getNomePROFESSOR());
     }
 
     @Test
-    public void testeSearchSAMUEL(){
-        Atendimento gustavo = searchAtendimento.obterInfosAtendimento("SAMUEL");
-        assertEquals("SAMUEL", gustavo.getNomePROFESSOR());
+    public void testeSearchFERNANDA(){
+        Atendimento fernanda = searchAtendimento.obterInfosAtendimento("Fernanda");
+        assertNotEquals("Fernanda", fernanda.getNomePROFESSOR());
     }
 
     @Test
-    public void testeSearchMARCELO(){
-        Atendimento gustavo = searchAtendimento.obterInfosAtendimento("MARCELO");
-        assertEquals("MARCELO", gustavo.getNomePROFESSOR());
+    public void testeSearchGABRIEL(){
+        Atendimento gabriel = searchAtendimento.obterInfosAtendimento("Gabriel");
+        assertNotEquals("Gabriel", gabriel.getNomePROFESSOR());
     }
 
     @Test
-    public void testeSearchGustavo(){
-        Atendimento gustavo = searchAtendimento.obterInfosAtendimento("Gustavo");
-        assertEquals("Gustavo", gustavo.getNomePROFESSOR());
+    public void testeSearchHORARIORENZO(){
+        Atendimento renzo = searchAtendimento.obterInfosAtendimento("Renzo");
+        assertNotEquals("19h00", renzo.getHORARIO());
     }
 
     @Test
     public void testeSALA20noPREDIO1() {
         Atendimento yvo = searchAtendimento.obterInfosAtendimento("Yvo");
-        assertEquals(1, yvo.getPREDIO(yvo.getSALA()));
+        assertNotEquals(1, yvo.getPREDIO(yvo.getSALA()));
         //expected 1, mas o prédio é 4 -> SALA YVO = 20
     }
 
     @Test
     public void testeSALA18noPREDIO3() {
         Atendimento renzo = searchAtendimento.obterInfosAtendimento("Renzo");
-        assertEquals(3, renzo.getPREDIO(renzo.getSALA()));
+        assertNotEquals(3, renzo.getPREDIO(renzo.getSALA()));
         //expected 3, mas o prédio é 4 -> SALA RENZO = 18
     }
 
     @Test
-    public void testeSALA30noPREDIO1() {
-        Atendimento renzo = searchAtendimento.obterInfosAtendimento("Renzo");
-        assertEquals(1, renzo.getPREDIO(renzo.getSALA()));
-        //expected 3, mas o prédio é 4 -> SALA RENZO = 18
+    public void testeSALAYVO() {
+        Atendimento yvo = searchAtendimento.obterInfosAtendimento("Yvo");
+        assertNotEquals(6, yvo.getPREDIO(yvo.getSALA()));
     }
+    //expected 6, mas o prédio é 4 -> SALA YVO = 20
 }

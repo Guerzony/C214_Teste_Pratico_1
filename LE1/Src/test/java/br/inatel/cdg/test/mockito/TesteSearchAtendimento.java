@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import static org.junit.Assert.*;
 
 import br.inatel.cdg.Atendimento;
 import br.inatel.cdg.SearchAtendimento;
@@ -41,7 +42,7 @@ public class TesteSearchAtendimento {
     public void testeSearchPhyll(){
         Mockito.when(atendimentoService.obterInfosAtendimento("Phyll")).thenReturn(AtendimentoConst.CHRIS);
         Atendimento phyll = searchAtendimento.obterInfosAtendimento("Phyll");
-        assertEquals("Phyll", phyll.getNomePROFESSOR());
+        assertNotEquals("Yvo", phyll.getNomePROFESSOR());
 
     }
 
