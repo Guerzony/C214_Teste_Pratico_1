@@ -1,9 +1,14 @@
 # C214_TRABALHO
 
+## Nomes:
+### 1 - Nathan Santos Ataliba
+### 2 - Gabriel Henrique Guerzony
+
 ## Logica utilizada para o código:
 
-### Nomes:
-- Não será permitido nomes iguais.
+### Json:
+- O código possui um Json com alguns professores.
+- Cada professor possui seus respecitivos atributos.
 
 ### Periodo:
 - É permitido o periodo Integral ou Noturno.
@@ -16,5 +21,7 @@
 - Sala(21 a 25) -> predio 6
 - Qualquer outra sala sera predio 0(Não existe)
 
-
+### Testes:
+- Foram feitos 10 testes de cenarios de sucesso.
+- Foram feitos 10 testes para cenarios de falha.
 
