@@ -51,11 +51,11 @@ public class Atendimento {
             return predio;
         }
         else if( sala >= 21 && sala <= 25 ){
-            predio = 5;
+            predio = 6;
             return predio;
         }
         else{
-            predio = 6;
+            predio = 7;
             return predio;
         }
     }

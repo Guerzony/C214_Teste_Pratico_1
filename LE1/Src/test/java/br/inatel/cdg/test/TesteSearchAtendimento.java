@@ -160,6 +160,4 @@ public class TesteSearchAtendimento {
         assertEquals(1, renzo.getPREDIO(renzo.getSALA()));
         //expected 3, mas o prédio é 4 -> SALA RENZO = 18
     }
-
-
 }
