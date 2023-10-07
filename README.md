@@ -22,6 +22,9 @@
 - Qualquer outra sala sera predio 0(Não existe)
 
 ### Testes:
-- Foram feitos 10 testes de cenarios de sucesso.
-- Foram feitos 10 testes para cenarios de falha.
+- Foi utilizado mockito para 1 teste de sucesso.
+- Foi utilizado mockito para 1 teste de falha.
+- Foram feitos 9 testes para cenarios de sucesso.
+- Foram feitos 9 testes para cenarios de falha.
 
+Totalizando 20 testes feitos ao longo do codigo.
