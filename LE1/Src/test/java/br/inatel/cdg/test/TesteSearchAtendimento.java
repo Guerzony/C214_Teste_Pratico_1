@@ -95,6 +95,12 @@ public class TesteSearchAtendimento {
 
     }
 
+    public void testeSALASamuel() {
+        Atendimento samuel = searchAtendimento.obterInfosAtendimento("Samuel");
+        assertEquals(3, chris.getPREDIO(samuel.getSALA()));
+
+    }
+
     @Test
     public void testeSALAYvo() {
         Atendimento yvo = searchAtendimento.obterInfosAtendimento("Yvo");
@@ -160,4 +166,10 @@ public class TesteSearchAtendimento {
         assertNotEquals(6, yvo.getPREDIO(yvo.getSALA()));
     }
     //expected 6, mas o prédio é 4 -> SALA YVO = 20
+
+    @Test
+    public void testeSearchEXTEREXPOSITO(){
+        Atendimento exterexposito = searchAtendimento.obterInfosAtendimento("Exter Exposito");
+        assertNotEquals("Exter Exposito", exterexposito.getNomePROFESSOR());
+    }
 }
