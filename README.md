@@ -24,11 +24,11 @@
 ### Testes:
 - Foi utilizado mockito para 1 teste de sucesso.
 - Foi utilizado mockito para 1 teste de falha.
-- Foram feitos 9 testes para cenarios de sucesso.
-- Foram feitos 9 testes para cenarios de falha.
+- Foram feitos 10  testes para cenarios de sucesso.
+- Foram feitos 10 testes para cenarios de falha.
 
-Totalizando 20 testes feitos ao longo do codigo.
+Totalizando 22 testes feitos ao longo do codigo.
 
-Todos os 20 testes passaram, sendo 10 testes para falha e 10 testes para sucesso.
+Todos os 22 testes passaram, sendo 10 testes para falha e 10 testes para sucesso.
 
 Todos são testes unitários.
