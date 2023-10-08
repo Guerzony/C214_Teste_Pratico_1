@@ -11,7 +11,7 @@
 - Cada professor possui seus respecitivos atributos.
 
 ### Periodo:
-- É permitido o periodo Integral ou Noturno.
+- Temos como opção de periodo Integral ou Noturno!
 
 ### Salas e predios:
 - Sala(1 a 5) -> predio 1
@@ -19,7 +19,7 @@
 - Sala(11 a 15) -> predio 3
 - Sala(16 a 20) -> predio 4
 - Sala(21 a 25) -> predio 6
-- Qualquer outra sala sera predio 0(Não existe)
+- Qualquer outra sala acarretará em erro pois (Não existe)
 
 ### Testes:
 - Foi utilizado mockito para 1 teste de sucesso.
