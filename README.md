@@ -28,3 +28,7 @@
 - Foram feitos 9 testes para cenarios de falha.
 
 Totalizando 20 testes feitos ao longo do codigo.
+
+Todos os 20 testes passaram, sendo 10 testes para falha e 10 testes para sucesso.
+
+Todos são testes unitários.
