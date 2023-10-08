@@ -95,9 +95,10 @@ public class TesteSearchAtendimento {
 
     }
 
+    @Test
     public void testeSALASamuel() {
         Atendimento samuel = searchAtendimento.obterInfosAtendimento("Samuel");
-        assertEquals(3, chris.getPREDIO(samuel.getSALA()));
+        assertEquals(3, samuel.getPREDIO(samuel.getSALA()));
 
     }
 
